@@ -1,1 +1,4 @@
 .vs
+*.md
+/views/node_modules/cookie
+/views/node_modules
