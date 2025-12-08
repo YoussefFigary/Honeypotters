@@ -2,3 +2,4 @@
 *.md
 /views/node_modules/cookie
 /views/node_modules
+/node_modules
