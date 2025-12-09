@@ -10,7 +10,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render('registration', { name: 'Youssef' });
+    res.render('login', { name: 'Chris' });
+});
+app.get('/about', (req, res) => {
+    res.render('registration', { name: 'Chris' });
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

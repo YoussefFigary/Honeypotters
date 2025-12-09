@@ -4,6 +4,11 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+.form-item {
+  margin-bottom: 20px; /* Adjust the spacing as needed */
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
