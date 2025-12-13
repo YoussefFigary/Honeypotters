@@ -1,3 +1,4 @@
+const db = require('./db');
 var express = require('express');
 var path = require('path');
 
@@ -15,27 +16,56 @@ app.get('/', function(req,res){
   res.render('index',{title: "express"})
 });
 
-app.get('/registration',function(req,res){
+app.get('/register',function(req,res){
   res.render('registration')
 });
 
 app.post('/register',function(req,res){
-   try {
-      var x = req.body.username;
-      var y = req.body.password;
+   const user = {
+        username: req.body.username,
+        password: req.body.password,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email
+    };
 
-      const newUser = new User({
-          username: x,
-          password: y
+    db.collection('users')
+      .insertOne(user)
+      .then(() => {
+          res.redirect('/login');  // Redirect after success
+      })
+      .catch(err => {
+          console.error(err);
+          res.status(500).send("Error saving user");
       });
+});
 
-      newUser.save();
+app.get('/login',function(req,res){
+  res.render('login')
+});
 
-      res.send("User registered successfully!");
-   } catch (err) {
-      console.error(err);
-      res.status(500).send("Error saving user.");
-   }
+app.post('/login',function(req,res){
+  const { username, password } = req.body;
+
+    db.collection('users').findOne({ username: username })
+        .then(user => {
+            // User not found
+            if (!user) {
+                return res.status(401).send("User not found");
+            }
+
+            // Password does not match
+            if (user.password !== password) {
+                return res.status(401).send("Incorrect password");
+            }
+
+            // Login successful
+           res.redirect('/home');
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Server error");
+        });
 });
 
 app.get('/annapurna',function(req,res){
@@ -63,9 +93,7 @@ app.post('/search',function(req,res){
 app.get('/islands',function(req,res){
   res.render('islands')
 });
-app.get('/login',function(req,res){
-  res.render('login')
-});
+
 app.get('/paris',function(req,res){
   res.render('paris')
 });
