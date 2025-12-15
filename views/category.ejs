@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+    <!-- Page Meta Tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <!--<link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#5bbad5">--> 
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="/Stylesheets/css_home/libs.bundle.css" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/Stylesheets/css_home/theme.bundle.css" />
+
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fix for custom scrollbar if JS is disabled-->
+    <noscript>
+        <style>
+          /**
+          * Reinstate scrolling for non-JS clients
+          */
+          .simplebar-content-wrapper {
+            overflow: auto;
+          }
+        </style>
+    </noscript>
+
+    <!-- Page Title -->
+
+    
+
+
+    <!-- Custom CSS for grid fix -->
+    <style>
+        /* Force grid visibility and fix layout */
+        .card-listing {
+            border: 1px solid #dee2e6 !important;
+            border-radius: 0.375rem !important;
+            overflow: hidden !important;
+            min-height: 350px !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        
+        .card-header {
+            height: 200px !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+        
+        .card-header picture {
+            height: 100% !important;
+            width: 100% !important;
+        }
+        
+        .card-header img {
+            object-fit: cover !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        
+        .card-body {
+            flex-grow: 1 !important;
+            padding: 1rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        .card-actions {
+            flex-shrink: 0 !important;
+        }
+        
+        /* Ensure grid columns work */
+        .row.g-4 {
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+        
+        .col-12.col-sm-6.col-md-4 {
+            display: block !important;
+            float: none !important;
+        }
+    </style>
+ 
+    <noscript>
+        <style>
+          /**
+          * Reinstate scrolling for non-JS clients
+          */
+          .simplebar-content-wrapper {
+            overflow: auto;
+          }
+        </style>
+    </noscript>
+
+    <!-- Page Title -->
+    <title>Alpine | Destinations Grid</title>
+    
+</head>
+<body class="">
+
+
+    <!-- Navbar -->
+    <div class="position-relative z-index-30">
+        <!-- Navbar -->
+        <nav
+            class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column  border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
+            <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
+                <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+        
+                    <!-- Logo-->
+                    <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/views/home.ejs">
+                        <!-- Start of Logo-->
+                        <div class="d-flex align-items-center">
+                            <div class="f-w-6 d-flex align-items-center me-2 lh-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194 194"><path fill="currentColor" class="svg-logo-white" d="M47.45,60l1.36,27.58,53.41-51.66,50.87,50,3.84-26L194,100.65V31.94A31.94,31.94,0,0,0,162.06,0H31.94A31.94,31.94,0,0,0,0,31.94v82.57Z"/><path fill="currentColor" class="svg-logo-dark" d="M178.8,113.19l1,34.41L116.3,85.92l-14.12,15.9L88.07,85.92,24.58,147.53l.93-34.41L0,134.86v27.2A31.94,31.94,0,0,0,31.94,194H162.06A31.94,31.94,0,0,0,194,162.06V125.83Z"/></svg>
+                            </div> <span class="fs-5">HoneyPotters</span>
+                        </div>
+                        <!-- / Logo-->
+                        
+                    </a>
+                    <!-- / Logo-->
+        
+                    <!-- Main Navigation-->
+                    <div class="ms-5 flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1" id="navbarNavDropdown">
+        
+                        <!-- Mobile Nav Toggler-->
+                        <button
+                            class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 position-absolute top-0 end-0 mt-3 me-2"
+                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="ri-close-circle-line ri-2x"></i>
+                        </button>
+                        <!-- / Mobile Nav Toggler-->
+        
+                        <ul class="navbar-nav py-lg-2 mx-auto">
+                            <li class="nav-item me-lg-4 dropdown position-static">
+                                <a class="nav-link fw-bolder  py-lg-4" href="home.ejs" role="button" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Home
+                                </a>
+                               
+                            </li>
+                            
+                        
+                            <li class="nav-item me-lg-4">
+                                <a class="nav-link fw-bolder py-lg-4" href="#">
+                                    Want To Go
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown me-lg-4">
+                                <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="categories.ejs" role="button" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="hiking.ejs">Hiking</a></li>
+                                    <li><a class="dropdown-item" href="islands.ejs">Islands</a></li>
+                                    <li><a class="dropdown-item" href="cities.ejs">Cities</a></li>
+                                  </ul>
+                            </li>
+                        </ul>            </div>
+                    <!-- / Main Navigation-->
+        
+                    <!-- Navbar Icons-->
+                    <ul class="list-unstyled mb-0 d-flex align-items-center">
+        
+                        <!-- Navbar Toggle Icon-->
+                        <li class="d-inline-block d-lg-none">
+                            <button
+                                class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 d-flex align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="ri-menu-line ri-lg align-middle"></i>
+                            </button>
+                        </li>
+                        <!-- /Navbar Toggle Icon-->
+        
+                        <!-- Navbar Search-->
+                        <li class="ms-1 d-inline-block">
+                            <button
+                                class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
+                                data-pr-search>
+                                <i class="ri-search-2-line ri-lg align-middle"></i>
+                            </button>
+                        </li>
+                        <!-- /Navbar Search-->
+        
+                        <!-- Navbar Wishlist-->
+                        <li class="ms-1 d-none d-lg-inline-block">
+                            <a class="btn btn-link px-2 py-0 text-decoration-none d-flex align-items-center"
+                                href="#">
+                                <i class="ri-heart-line ri-lg align-middle"></i>
+                            </a>
+                        </li>
+                        <!-- /Navbar Wishlist-->
+        
+                        <!-- Navbar Login-->
+                        <li class="ms-1 d-none d-lg-inline-block">
+                            <a class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
+                                href="#">
+                                <i class="ri-user-line ri-lg align-middle"></i>
+                            </a>
+                        </li>
+                        <!-- /Navbar Login-->
+        
+                        <!-- Navbar Cart-->
+                        <li class="ms-1 d-inline-block position-relative">
+                            <button
+                                class="btn btn-link px-2 text-decoration-none d-flex align-items-center disable-child-pointer"
+                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="ri-shopping-cart-2-line ri-lg align-middle position-relative z-index-10"></i>
+                                <span
+                                    class="fs-xs fw-bolder f-w-5 f-h-5 bg-orange rounded-lg d-block lh-1 pt-1 position-absolute top-0 end-0 z-index-20 mt-2 text-white">2</span>
+                            </button>
+                        </li>
+                        <!-- /Navbar Cart-->
+        
+                    </ul>
+                    <!-- Navbar Icons-->
+        
+                </div>
+            </div>
+        </nav>
+        <!-- / Navbar-->    </div>
+    <!-- / Navbar-->
+
+    <!-- Main Section-->
+    <section class="mt-0">
+
+        <!-- Category Top Banner -->
+        <div class="py-6 bg-img-cover bg-dark bg-overlay-gradient-dark position-relative overflow-hidden mb-4 bg-pos-center-center"
+            style="background-image: url(/images/Cairo.jpg);">
+            <div class="container position-relative z-index-20" data-aos="fade-right" data-aos-delay="300">
+                <nav aria-label="breadcrumb">
+                </nav>
+                <br>
+                <h1 class="fw-bold display-6 mb-4 text-white">Destinations</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+<div class="mb-5">
+    <h2 class="mb-4 fs-5 mt-2 fw-bold text-dark">Destinations by Type</h2>
+    <div class="d-grid gap-2">
+        <a href="/cities" class="btn-category-city text-decoration-none p-3 rounded-3 text-white d-flex align-items-center justify-content-between shadow-sm">
+            <div class="d-flex align-items-center">
+                <i class="ri-building-line fs-4 me-3"></i>
+                <div>
+                    <div class="fw-bold">City Escapes</div>
+                    <div class="small opacity-75">Urban adventures</div>
+                </div>
+            </div>
+            <i class="ri-arrow-right-line fs-5"></i>
+        </a>
+        
+        <a href="/islands" class="btn-category-island text-decoration-none p-3 rounded-3 text-white d-flex align-items-center justify-content-between shadow-sm">
+            <div class="d-flex align-items-center">
+                <i class="ri-sailboat-line fs-4 me-3"></i>
+                <div>
+                    <div class="fw-bold">Island Paradises</div>
+                    <div class="small opacity-75">Tropical retreats</div>
+                </div>
+            </div>
+            <i class="ri-arrow-right-line fs-5"></i>
+        </a>
+        
+        <a href="/hiking" class="btn-category-hiking text-decoration-none p-3 rounded-3 text-white d-flex align-items-center justify-content-between shadow-sm">
+            <div class="d-flex align-items-center">
+                <i class="ri-hiking-line fs-4 me-3"></i>
+                <div>
+                    <div class="fw-bold">Mountain Trails</div>
+                    <div class="small opacity-75">Adventure awaits</div>
+                </div>
+            </div>
+            <i class="ri-arrow-right-line fs-5"></i>
+        </a>
+    </div>
+</div>
+
+<style>
+    .btn-category-city {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    }
+    
+    .btn-category-island {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+    
+    .btn-category-hiking {
+        background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+    }
+    
+    .btn-category-city:hover, .btn-category-island:hover, .btn-category-hiking:hover {
+        transform: translateX(5px);
+        transition: transform 0.3s ease;
+        text-decoration: none;
+        opacity: 0.95;
+    }
+</style>
+
+                <!-- Category Products - 2x3 Grid -->
+                <div class="col-12 col-lg-9">
+                    <!-- Products Grid - 2x3 Layout -->
+                    <div class="row g-4 mb-5">
+                        <!-- Row 1 -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card position-relative h-100 card-listing hover-trigger">
+                                <a href="/inca" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                                    <div class="card-header">
+                                        <picture class="position-relative overflow-hidden d-block bg-light">
+                                            <img class="w-100 img-fluid position-relative z-index-10" src="/images/inca.png" alt="Inca Trail" onerror="this.src='https://via.placeholder.com/400x300?text=Inca+Trail'">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body px-0 text-center flex-grow-1 d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 mx-2 mx-md-4 fs-5 fw-bold">Inca</h5>
+                                    </div>
+                                </a>
+                                <div class="card-actions p-3 border-top">
+                                    <form method="POST" action="/want-to-go" class="w-100">
+                                        <input type="hidden" name="destination" value="inca">
+                                        <button type="submit" id="add-inca-btn" class="btn btn-sm btn-outline-primary w-100">
+                                            Add to Want to Go
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card position-relative h-100 card-listing hover-trigger">
+                                <a href="/paris" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                                    <div class="card-header">
+                                        <picture class="position-relative overflow-hidden d-block bg-light">
+                                            <img class="w-100 img-fluid position-relative z-index-10" src="/images/paris.png" alt="Paris" onerror="this.src='https://via.placeholder.com/400x300?text=Paris'">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body px-0 text-center flex-grow-1 d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 mx-2 mx-md-4 fs-5 fw-bold">Paris</h5>
+                                    </div>
+                                </a>
+                                <div class="card-actions p-3 border-top">
+                                    <form method="POST" action="/want-to-go" class="w-100">
+                                        <input type="hidden" name="destination" value="paris">
+                                        <button type="submit" id="add-paris-btn" class="btn btn-sm btn-outline-primary w-100">
+                                            Add to Want to Go
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card position-relative h-100 card-listing hover-trigger">
+                                <a href="/annapurna" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                                    <div class="card-header">
+                                        <picture class="position-relative overflow-hidden d-block bg-light">
+                                            <img class="w-100 img-fluid position-relative z-index-10" src="/images/annapurna.png" alt="Annapurna" onerror="this.src='https://via.placeholder.com/400x300?text=Annapurna'">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body px-0 text-center flex-grow-1 d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 mx-2 mx-md-4 fs-5 fw-bold">Annapurna</h5>
+                                    </div>
+                                </a>
+                                <div class="card-actions p-3 border-top">
+                                    <form method="POST" action="/want-to-go" class="w-100">
+                                        <input type="hidden" name="destination" value="annapurna">
+                                        <button type="submit" id="add-annapurna-btn" class="btn btn-sm btn-outline-primary w-100">
+                                            Add to Want to Go
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card position-relative h-100 card-listing hover-trigger">
+                                <a href="/santorini" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                                    <div class="card-header">
+                                        <picture class="position-relative overflow-hidden d-block bg-light">
+                                            <img class="w-100 img-fluid position-relative z-index-10" src="/images/santorini.png" alt="Santorini" onerror="this.src='https://via.placeholder.com/400x300?text=Santorini'">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body px-0 text-center flex-grow-1 d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 mx-2 mx-md-4 fs-5 fw-bold">Santorini</h5>
+                                    </div>
+                                </a>
+                                <div class="card-actions p-3 border-top">
+                                    <form method="POST" action="/want-to-go" class="w-100">
+                                        <input type="hidden" name="destination" value="santorini">
+                                        <button type="submit" id="add-santorini-btn" class="btn btn-sm btn-outline-primary w-100">
+                                            Add to Want to Go
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card position-relative h-100 card-listing hover-trigger">
+                                <a href="/rome" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                                    <div class="card-header">
+                                        <picture class="position-relative overflow-hidden d-block bg-light">
+                                            <img class="w-100 img-fluid position-relative z-index-10" src="/images/rome.png" alt="Rome" onerror="this.src='https://via.placeholder.com/400x300?text=Rome'">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body px-0 text-center flex-grow-1 d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 mx-2 mx-md-4 fs-5 fw-bold">Rome</h5>
+                                    </div>
+                                </a>
+                                <div class="card-actions p-3 border-top">
+                                    <form method="POST" action="/want-to-go" class="w-100">
+                                        <input type="hidden" name="destination" value="rome">
+                                        <button type="submit" id="add-rome-btn" class="btn btn-sm btn-outline-primary w-100">
+                                            Add to Want to Go
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="card position-relative h-100 card-listing hover-trigger">
+                                <a href="/bali" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                                    <div class="card-header">
+                                        <picture class="position-relative overflow-hidden d-block bg-light">
+                                            <img class="w-100 img-fluid position-relative z-index-10" src="/images/bali.png" alt="Bali" onerror="this.src='https://via.placeholder.com/400x300?text=Bali'">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body px-0 text-center flex-grow-1 d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 mx-2 mx-md-4 fs-5 fw-bold">Bali</h5>
+                                    </div>
+                                </a>
+                                <div class="card-actions p-3 border-top">
+                                    <form method="POST" action="/want-to-go" class="w-100">
+                                        <input type="hidden" name="destination" value="bali">
+                                        <button type="submit" id="add-bali-btn" class="btn btn-sm btn-outline-primary w-100">
+                                            Add to Want to Go
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+    </footer>
+
+      </div>
+    </div>
+    <!-- Search Overlay-->
+    <section class="search-overlay">
+        <div class="container search-container">
+            <div class="py-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <p class="lead lh-1 m-0 fw-bold">What are you looking for?</p>
+                    <button class="btn btn-light btn-close-search"><i class="ri-close-circle-line align-bottom"></i> Close search</button>
+                </div>
+                <form>
+                    <input type="text" class="form-control" id="searchForm" placeholder="Search by product or category name...">             
+                </form>
+                <div class="my-5">
+                   
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
+
+
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+
+                        </div>
+                    </div>
+                </div>
+    
+
+            </div>
+        </div>
+    </section>
+    <!-- Theme JS -->
+    <!-- Vendor JS -->
+    <script src="/javascript/js_category/vendor.bundle.js"></script>>
+    
+    <!-- Theme JS -->
+    <script src="/javascript/js_category/theme.bundle.js"></script>
+</body>
+
+</html>
