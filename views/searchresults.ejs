@@ -1,42 +1,175 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Search Results</title>
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Meta Tags 
+    <style>
+        body {
+            background-image: url("background3.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            -webkit-text-stroke: 1px blue;
+        }
+           
+    </style>
+     -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Results</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="/Stylesheets/css_home/libs.bundle.css" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/Stylesheets/css_home/theme.bundle.css" />
+
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fix for custom scrollbar if JS is disabled-->
+    <noscript>
+        <style>
+          /**
+          * Reinstate scrolling for non-JS clients
+          */
+          .simplebar-content-wrapper {
+            overflow: auto;
+          }
+        </style>
+    </noscript>
+
+
 </head>
+<body>
+       <!-- Search Overlay-->
+    <section class="py-5">
+        <div class="container search-container">
+            <div class="py-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <p class="lead lh-1 m-0 fw-bold">What are you looking for?</p>
+                    <button class="btn btn-light btn-close-search"><i class="ri-close-circle-line align-bottom"></i> Close search</button>
+                </div>
+                <form>
+                    <input type="text" class="form-control" id="searchForm" placeholder="Please enter a Distnation to search for    ">             
+                </form>
+                <div class="my-5">
+                   <p class="lead fw-bolder" id="resultsTitle">
+                        <% if (query) { %>
+                            Showing results for <span class="fw-bold">"<%= query %>"</span>
+                        <% } else { %>
+                            Welcome! Please enter a search term.
+                        <% } %>
+                    </p>
 
-<body style="background-image:url('background3.jpg'); background-size:100%">
+                    <div class="row" id="resultsContainer">
+                    <!-- Cards هتتزود هنا بعد ما نجيب API -->
+                    </div>
 
-<nav class="navbar navbar-dark bg-dark mb-4">
-  <span class="navbar-brand">Search Results</span>
+                </div>
+    
+                
+            </div>
+        </div>
+    </section>    
 
-  <!-- SEARCH BAR (available on all pages except login/register) -->
-  <form method="POST" action="/search" class="form-inline ml-auto">
-    <input class="form-control mr-2" name="search" type="search" placeholder="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
-</nav>
 
-<div class="container text-white">
+    <script>
+        const searchInput = document.getElementById("searchForm");
 
-  <% if (message) { %>
-    <h3 class="text-danger text-center"><%= message %></h3>
-  <% } %>
+        searchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (!query) return;
 
-  <% if (results.length > 0) { %>
-    <ul class="list-group">
-      <% results.forEach(dest => { %>
-        <li class="list-group-item">
-          <a href="/<%= dest.slug %>">
-            <strong><%= dest.name %></strong>
-          </a>
-          <p class="mb-0"><%= dest.description %></p>
-        </li>
-      <% }) %>
-    </ul>
-  <% } %>
+            // redirect للـ route الجديد
+            window.location.href = `/search?q=${encodeURIComponent(query)}`;
+        }
+        });
+    </script>
 
-</div>
+<script>
+  // STEP 3: read query from URL
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("q");
+
+  const resultsTitle = document.getElementById("resultsTitle");
+
+  if (query) {
+    resultsTitle.innerHTML = `
+      Showing results for 
+      <span class="fw-bold">"${query}"</span>
+    `;
+  } else {
+    resultsTitle.textContent = "Please enter a Distnation to search for or a part of the Distnation name.";
+  }
+</script>
+
+<script>
+  // STEP 4: fetch API results and render cards dynamically
+  const resultsContainer = document.getElementById("resultsContainer");
+  const queryParam = "<%= query %>"; // query from server
+
+  if (queryParam) {
+    // مثال: API endpoint على backend
+    fetch(`/api/search?query=${encodeURIComponent(queryParam)}`)
+      .then(res => res.json())
+      .then(data => {
+        resultsContainer.innerHTML = ""; // empty container
+
+        if (data.length === 0) {
+          resultsContainer.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        data.forEach(item => {
+          
+          const imageName = item.toLowerCase().replace(/\s+/g, "_") + ".png";
+
+          const cardHTML = `
+            <div class="col-12 col-md-6 col-lg-3 mb-3">
+              <div class="card h-100 text-center">
+                <div class="card-header bg-light p-0">
+                  <img class="w-100" src="/images/${imageName}" alt="${item}">
+                  <div class="card-actions mt-2">
+                    <button class="btn btn-outline-dark btn-sm">Add</button>
+                    <button class="btn btn-primary btn-sm" onclick="window.location.href='/${item.toLowerCase().replace(/\s+/g,'_')}'">View</button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">${item}</h5>
+                </div>
+              </div>
+            </div>
+          `;
+          resultsContainer.insertAdjacentHTML("beforeend", cardHTML);
+        });
+      })
+      .catch(err => {
+        console.error("Error fetching search results:", err);
+        resultsContainer.innerHTML = "<p>Failed to load results.</p>";
+      });
+  }
+</script>
+
+
+<script src="/javascript/js_home/vendor.bundle.js"></script>
+    
+    <!-- Theme JS -->
+<script src="/javascript/js_home/theme.bundle.js"></script>
+
 </body>
 </html>
