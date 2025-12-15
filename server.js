@@ -10,10 +10,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render("searchresults", { query: "" });
+    res.render("home", { query: "" });
 });
 app.get('/about', (req, res) => {
     res.render('registration', { name: 'Chris' });
+});
+app.get('/home', (req, res) => {
+    res.render('home', { name: 'Chris' });
 });
 
 app.get("/search", (req, res) => {
