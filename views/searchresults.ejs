@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+
     <!-- Meta Tags 
     <style>
         body {
@@ -63,8 +64,17 @@
     </style>
 
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+
+
+  <link rel="stylesheet" href="/Stylesheets/css_home/libs.bundle.css">
+  <link rel="stylesheet" href="/Stylesheets/css_home/theme.bundle.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 
     <div class="position-relative z-index-30">
         <!-- Navbar -->
@@ -187,123 +197,58 @@
                 </div>
             </div>
         </nav>
-       </div>
+    </div>
 
        <!-- Search Overlay-->
-    <section class="py-5">
-        <div class="container search-container">
-            <div class="py-5">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <p class="lead lh-1 m-0 fw-bold">What are you looking for?</p>
-                </div>
-                <form>
-                    <input type="text" class="form-control" id="searchForm" placeholder="Please enter a Distnation to search for    ">             
-                </form>
-                <div class="my-5">
-                   <p class="lead fw-bolder" id="resultsTitle">
-                        <% if (query) { %>
-                            Showing results for <span class="fw-bold">"<%= query %>"</span>
-                        <% } else { %>
-                            Welcome! Please enter a search term.
-                        <% } %>
-                    </p>
+   
 
-                    <div class="row" id="resultsContainer">
-                    <!-- Cards هتتزود هنا بعد ما نجيب API -->
+
+
+  <!-- SEARCH FORM (POST) -->
+  <section class="py-5">
+    <div class="container search-container">
+      <div class="py-5">
+        <form action="/search" method="POST">
+          <input type="text" name="search" class="form-control mb-4" placeholder="Please enter a Destination" required>
+        </form>
+
+        <!-- RESULTS TITLE -->
+        <p class="lead fw-bolder" id="resultsTitle">
+          <% if (query) { %>
+            Showing results for <span class="fw-bold">"<%= query %>"</span>
+          <% } else { %>
+            Welcome! Please enter a search term.
+          <% } %>
+        </p>
+
+        <!-- RESULTS CARDS -->
+        <div class="row" id="resultsContainer">
+          <% if (results && results.length > 0) { %>
+            <% results.forEach(function(item){ %>
+              <div class="col-12 col-md-6 col-lg-3 mb-3">
+                <div class="card h-100 text-center">
+                  <div class="card-header bg-light p-0">
+                    <img class="w-100" src="/images/<%= item.name.toLowerCase().replace(/\s+/g,'_') %>.png" alt="<%= item.name %>">
+                    <div class="card-actions mt-2">
+                      <button class="btn btn-outline-dark btn-sm">Add</button>
+                      <button class="btn btn-primary btn-sm" onclick="window.location.href='/<%= item.slug %>'">View</button>
                     </div>
-
-                </div>
-    
-                
-            </div>
-        </div>
-    </section>    
-
-
-    <script>
-        const searchInput = document.getElementById("searchForm");
-
-        searchInput.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            const query = searchInput.value.trim();
-            if (!query) return;
-
-            // redirect للـ route الجديد
-            window.location.href = `/search?q=${encodeURIComponent(query)}`;
-        }
-        });
-    </script>
-
-<script>
-  // STEP 3: read query from URL
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get("q");
-
-  const resultsTitle = document.getElementById("resultsTitle");
-
-  if (query) {
-    resultsTitle.innerHTML = `
-      Showing results for 
-      <span class="fw-bold">"${query}"</span>
-    `;
-  } else {
-    resultsTitle.textContent = "Please enter a Distnation to search for or a part of the Distnation name.";
-  }
-</script>
-
-<script>
-  // STEP 4: fetch API results and render cards dynamically
-  const resultsContainer = document.getElementById("resultsContainer");
-  const queryParam = "<%= query %>"; // query from server
-
-  if (queryParam) {
-    // مثال: API endpoint على backend
-    fetch(`/api/search?query=${encodeURIComponent(queryParam)}`)
-      .then(res => res.json())
-      .then(data => {
-        resultsContainer.innerHTML = ""; // empty container
-
-        if (data.length === 0) {
-          resultsContainer.innerHTML = "<p>No results found.</p>";
-          return;
-        }
-
-        data.forEach(item => {
-          
-          const imageName = item.toLowerCase().replace(/\s+/g, "_") + ".png";
-
-          const cardHTML = `
-            <div class="col-12 col-md-6 col-lg-3 mb-3">
-              <div class="card h-100 text-center">
-                <div class="card-header bg-light p-0">
-                  <img class="w-100" src="/images/${imageName}" alt="${item}">
-                  <div class="card-actions mt-2">
-                    <button class="btn btn-outline-dark btn-sm">Add</button>
-                    <button class="btn btn-primary btn-sm" onclick="window.location.href='/${item.toLowerCase().replace(/\s+/g,'_')}'">View</button>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= item.name %></h5>
                   </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">${item}</h5>
-                </div>
               </div>
-            </div>
-          `;
-          resultsContainer.insertAdjacentHTML("beforeend", cardHTML);
-        });
-      })
-      .catch(err => {
-        console.error("Error fetching search results:", err);
-        resultsContainer.innerHTML = "<p>Failed to load results.</p>";
-      });
-  }
-</script>
+            <% }) %>
+          <% } else if (message) { %>
+            <p><%= message %></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-<script src="/javascript/js_home/vendor.bundle.js"></script>
-    
-    <!-- Theme JS -->
-<script src="/javascript/js_home/theme.bundle.js"></script>
-
+  <script src="/javascript/js_home/vendor.bundle.js"></script>
+  <script src="/javascript/js_home/theme.bundle.js"></script>
 </body>
 </html>
