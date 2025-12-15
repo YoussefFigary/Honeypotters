@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+const PORT = 3000;
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,7 +46,7 @@ async function initializeDatabase(db) {
 }
 
 // ---------- Routes ----------
-app.get('/', (req, res) => res.render('index', { title: "express" }));
+app.get('/', (req, res) => res.render('home', { title: "express" }));
 app.get('/register', (req, res) => res.render('registration'));
 app.post('/register', (req, res) => {
   const user = { username: req.body.username, password: req.body.password, fname: req.body.fname, lname: req.body.lname, email: req.body.email };
@@ -117,3 +118,4 @@ initializeDatabase(db)
   .catch(err => console.error('Database init failed', err));
 
 app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
