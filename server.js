@@ -67,6 +67,30 @@ app.post('/login', (req, res) => {
     .catch(err => res.status(500).send("Server error"));
 });
 
+app.get('/wanttogo', (req, res) => {
+  res.render('wanttogo');
+});
+
+app.get('/hiking', (req, res) => {
+  res.render('hiking');
+});
+
+app.get('/islands', (req, res) => {
+  res.render('islands');
+});
+
+app.get('/cities', (req, res) => {
+  res.render('cities');
+});
+
+app.get('/wanttogo', (req, res) => {
+  res.render('wanttogo');
+});
+
+app.get('/category', (req, res) => {
+  res.render('category');
+});
+
 app.get('/home', (req, res) => res.render('home'));
 app.post('/home', (req, res) => {
   const page = req.body.page;

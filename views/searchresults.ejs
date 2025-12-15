@@ -78,7 +78,7 @@
 
     <div class="position-relative z-index-30">
         <!-- Navbar -->
-        <nav
+         <nav
             class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column  border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all always-hover">
             <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
                 <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
@@ -110,7 +110,7 @@
         
                         <ul class="navbar-nav py-lg-2 mx-auto">
                             <li class="nav-item me-lg-4 dropdown position-static">
-                                <a class="nav-link fw-bolder  py-lg-4" href="home.ejs" role="button" data-bs-toggle="dropdown"
+                                 <a class="nav-link fw-bolder  py-lg-4" href="/home" role="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     Home
                                 </a>
@@ -124,15 +124,15 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown me-lg-4">
-                                <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="#" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="/category" role="button" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     Categories
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="./hiking.ejs">Hiking</a></li>
-                                    <li><a class="dropdown-item" href="./islands.ejs">Islands</a></li>
-                                    <li><a class="dropdown-item" href="./cities.ejs">Cities</a></li>
-                                  </ul>
+                                    <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
+                                    <li><a class="dropdown-item" href="/islands">Islands</a></li>
+                                    <li><a class="dropdown-item" href="/cities">Cities</a></li>
+                                </ul>
                             </li>
                         </ul>            </div>
                     <!-- / Main Navigation-->
@@ -152,44 +152,15 @@
                         <!-- /Navbar Toggle Icon-->
         
                         <!-- Navbar Search-->
-                        <li class="ms-1 d-inline-block">
-                            <button
-                                class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
-                                data-pr-search>
+                       <li class="ms-1 d-inline-block">
+                            <a
+                                href="/searchresults"
+                                class="btn btn-link px-2 text-decoration-none d-flex align-items-center">
                                 <i class="ri-search-2-line ri-lg align-middle"></i>
-                            </button>
+                            </a>
                         </li>
                         <!-- /Navbar Search-->
         
-                        <!-- Navbar Wishlist-->
-                        <li class="ms-1 d-none d-lg-inline-block">
-                            <a class="btn btn-link px-2 py-0 text-decoration-none d-flex align-items-center"
-                                href="#">
-                                <i class="ri-heart-line ri-lg align-middle"></i>
-                            </a>
-                        </li>
-                        <!-- /Navbar Wishlist-->
-        
-                        <!-- Navbar Login-->
-                        <li class="ms-1 d-none d-lg-inline-block">
-                            <a class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
-                                href="#">
-                                <i class="ri-user-line ri-lg align-middle"></i>
-                            </a>
-                        </li>
-                        <!-- /Navbar Login-->
-        
-                        <!-- Navbar Cart-->
-                        <li class="ms-1 d-inline-block position-relative">
-                            <button
-                                class="btn btn-link px-2 text-decoration-none d-flex align-items-center disable-child-pointer"
-                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                <i class="ri-shopping-cart-2-line ri-lg align-middle position-relative z-index-10"></i>
-                                <span
-                                    class="fs-xs fw-bolder f-w-5 f-h-5 bg-orange rounded-lg d-block lh-1 pt-1 position-absolute top-0 end-0 z-index-20 mt-2 text-white">2</span>
-                            </button>
-                        </li>
-                        <!-- /Navbar Cart-->
         
                     </ul>
                     <!-- Navbar Icons-->
