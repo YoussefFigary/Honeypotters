@@ -45,7 +45,7 @@ async function initializeDatabase(db) {
 }
 
 // ---------- Routes ----------
-app.get('/', (req, res) => res.render('index', { title: "express" }));
+app.get('/', (req, res) => res.render('home', { title: "express" }));
 app.get('/register', (req, res) => res.render('registration'));
 app.post('/register', (req, res) => {
   const user = { username: req.body.username, password: req.body.password, fname: req.body.fname, lname: req.body.lname, email: req.body.email };
@@ -81,6 +81,17 @@ app.post('/home', (req, res) => {
 // Destination pages
 ['annapurna', 'bali', 'cities', 'hiking', 'islands', 'paris', 'rome', 'santorini', 'wanttogo', 'inca'].forEach(page => {
   app.get(`/${page}`, (req, res) => res.render(page));
+});
+
+// ---------- Categories page ----------
+app.get('/categories', async (req, res) => {
+  try {
+    const categories = await db.collection('categories').find().toArray();
+    res.render('categories', { categories });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
 });
 
 // ---------- SEARCH ----------

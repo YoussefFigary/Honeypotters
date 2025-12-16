@@ -13,6 +13,10 @@
             text-align: center;
             -webkit-text-stroke: 1px blue;
         }
+
+        .card {
+            margin-bottom: 20px;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +26,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
         <a class="navbar-brand" style="color: rgb(191, 255, 161)">Want-to-Go List</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -29,14 +34,51 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
+            <ul class="navbar-nav mr-auto"></ul>
             <form method="POST" action='/search' class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search"
+                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search"
                     aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </nav>
+
+    <div class="container">
+        <h1 class="mb-4"><%= username %>'s Want-to-Go List</h1>
+
+        <% if (destinations.length === 0) { %>
+            <div class="alert alert-info text-center">Your Want-to-Go list is empty.</div>
+        <% } else { %>
+            <div class="row">
+                <% destinations.forEach(dest => { %>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="<%= dest.image || 'default.jpg' %>" alt="<%= dest.name %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= dest.name %></h5>
+                                <p class="card-text"><%= dest.description %></p>
+                                <a href="/<%= dest.slug %>" class="btn btn-primary">View Destination</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+
+        <div class="text-center mt-4">
+            <a href="/home" class="btn btn-success">Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for navbar toggle) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGaFqvF5iYv8j0q5PaaM/V" 
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy3oVM+P5mXk4Qa3pG3F2jFfX3pG5xJw" 
+        crossorigin="anonymous"></script>
 </body>
 </html>
