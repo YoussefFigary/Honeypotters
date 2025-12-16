@@ -13,18 +13,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="/Stylesheets/css_home/libs.bundle.css" />
-    <link rel="stylesheet" href="/Stylesheets/css_home/theme.bundle.css" />
+    <link rel="stylesheet" href="/Stylesheets/css_home/libs.bundle.css">
+    <link rel="stylesheet" href="/Stylesheets/css_home/theme.bundle.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <noscript>
-        <style>
-            .simplebar-content-wrapper { overflow: auto; }
-        </style>
-    </noscript>
 
     <style>
         body {
@@ -35,28 +27,21 @@
         }
 
         nav.navbar {
-            transition: background-color 0.3s ease, color 0.3s ease;
             background-color: transparent !important;
+            transition: background-color 0.3s ease;
         }
 
-        /* Default State: White Elements */
         nav.navbar .nav-link,
-        nav.navbar .navbar-brand,
-        nav.navbar i,
-        nav.navbar span {
+        nav.navbar .navbar-brand {
             color: #ffffff !important;
         }
 
-        /* Hover State: White Background */
         nav.navbar:hover {
             background-color: #ffffff !important;
         }
 
-        /* Hover State: Black Elements */
         nav.navbar:hover .nav-link,
-        nav.navbar:hover .navbar-brand,
-        nav.navbar:hover i,
-        nav.navbar:hover span { /* Added span here to target the "Rome" text */
+        nav.navbar:hover .navbar-brand {
             color: #000000 !important;
         }
 
@@ -102,10 +87,8 @@
             border: 2px solid #5d3eff;
             color: #5d3eff;
             background: transparent;
-            border-radius: 0;
             padding: 10px;
             font-weight: 600;
-            text-transform: capitalize;
             cursor: pointer;
         }
 
@@ -118,125 +101,56 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg border-0 position-absolute top-0 start-0 w-100 z-index-30">
-        <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
-            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+<nav class="navbar navbar-expand-lg border-0 position-absolute top-0 start-0 w-100 z-index-30">
+    <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+        <a class="navbar-brand fw-bold fs-3 m-0 p-0" href="/home">Rome</a>
 
-                <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/home">
-                    <div class="d-flex align-items-center">
-                        <div class="f-w-6 d-flex align-items-center me-2 lh-1">
-                            <i class="ri-mountain-line ri-lg"></i>
-                        </div>
-                        <span class="fs-5">Rome</span>
-                    </div>
-                </a>
-
-                <div class="ms-5 flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1" id="navbarNavDropdown">
-                    <button class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 position-absolute top-0 end-0 mt-3 me-2"
-                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ri-close-circle-line ri-2x"></i>
-                    </button>
-
-                    <ul class="navbar-nav py-lg-2 mx-auto">
-                        <li class="nav-item me-lg-4"><a class="nav-link fw-bolder py-lg-4" href="/home">Home</a></li>
-                        <li class="nav-item me-lg-4"><a class="nav-link fw-bolder py-lg-4" href="/want-to-go">Want To Go</a></li>
-                        <li class="nav-item dropdown me-lg-4">
-                            <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">Categories</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
-                                <li><a class="dropdown-item" href="/islands">Islands</a></li>
-                                <li><a class="dropdown-item" href="/cities">Cities</a></li>
-                            </ul>
-                        </li>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/wanttogo">Want To Go</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
+                        <li><a class="dropdown-item" href="/islands">Islands</a></li>
+                        <li><a class="dropdown-item" href="/cities">Cities</a></li>
                     </ul>
-                </div>
-
-                <ul class="list-unstyled mb-0 d-flex align-items-center">
-                    <li class="d-inline-block d-lg-none">
-                        <button class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 d-flex align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="ri-menu-line ri-lg align-middle"></i>
-                        </button>
-                    </li>
-                    <li class="ms-1 d-inline-block">
-                        <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center" data-pr-search>
-                            <i class="ri-search-2-line ri-lg align-middle"></i>
-                        </button>
-                    </li>
-                    <li class="ms-1 d-none d-lg-inline-block"><a class="btn btn-link px-2 py-0 text-decoration-none d-flex align-items-center" href="#"><i class="ri-heart-line ri-lg align-middle"></i></a></li>
-                    <li class="ms-1 d-none d-lg-inline-block"><a class="btn btn-link px-2 text-decoration-none d-flex align-items-center" href="#"><i class="ri-user-line ri-lg align-middle"></i></a></li>
-                    <li class="ms-1 d-inline-block position-relative">
-                        <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center disable-child-pointer"
-                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                            <i class="ri-shopping-cart-2-line ri-lg align-middle position-relative z-index-10"></i>
-                            <span class="fs-xs fw-bolder f-w-5 f-h-5 bg-orange rounded-lg d-block lh-1 pt-1 position-absolute top-0 end-0 z-index-20 mt-2 text-white">2</span>
-                        </button>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-
-    <div class="rome-content">
-        <div class="rome-image">
-            <img src="/images/rome.png" alt="Rome">
-            <form method="POST" action="/want-to-go" class="wanttogo-btn">
-                <input type="hidden" name="destination" value="rome">
-                <button type="submit" class="btn btn-sm w-100">Add to Want to Go</button>
-            </form>
-        </div>
-
-        <div class="rome-text">
-            <p>
-                Rome today is one of the most important tourist destinations of the world, due to the incalculable immensity of its archaeological and art treasures, as well as for the charm of its unique traditions, the beauty of its panoramic views, and the majesty of its magnificent villas.
-            </p>
-        </div>
-
-        <div class="rome-video">
-            <iframe height="315" src="https://www.youtube.com/embed/GXoEpNjgKzg?si=mw2WByO-sxV2MQjw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="container2">
-        Rome today is one of the most important tourist destinations of the world, due to the incalculable immensity of its archaeological and art treasures, as well as for the charm of its unique traditions, the beauty of its panoramic views, and the majesty of its magnificent villas.
-    </div>
-  <form method="POST" action="/want-to-go" class="container1 wanttogo">
-                                        <input type="hidden" name="destination" value="rome">
-                                        <button type="submit" id="add-rome-btn" class="btn btn-sm btn-outline-primary w-100">
-                                            Add to Want to Go
-                                        </button>
-                                    </form>
-    <div class="video">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GXoEpNjgKzg?si=mw2WByO-sxV2MQjw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <script>
-async function addToWantToGo(slug, button) {
-    try {
-        const res = await fetch('/wanttogo/add', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ slug })
-        });
+</nav>
 
-        const text = await res.text();
-        if (res.ok) {
-            button.innerText = "Added!";
-            button.disabled = true;
-        } else {
-            alert(text);
-        }
-    } catch(err) {
-        console.error(err);
-        alert("Error adding destination");
-    }
-}
-</script>
+<div class="rome-content">
+    <div class="rome-image">
+        <img src="/images/rome.png" alt="Rome">
 
-    <script src="/javascript/js_home/vendor.bundle.js"></script>
-    <script src="/javascript/js_home/theme.bundle.js"></script>
+        <!-- Fixed backend form -->
+        <form method="POST" action="/want-to-go" class="wanttogo-btn">
+            <input type="hidden" name="slug" value="rome">
+            <button type="submit">Add to Want to Go</button>
+        </form>
+    </div>
+
+    <div class="rome-text">
+        <p>
+            Rome today is one of the most important tourist destinations in the world, due to the immense archaeological and art treasures,
+            the charm of its unique traditions, the beauty of its panoramic views, and the majesty of its magnificent villas.
+        </p>
+    </div>
+
+    <div class="rome-video">
+        <iframe height="315"
+                src="https://www.youtube.com/embed/GXoEpNjgKzg?si=mw2WByO-sxV2MQjw"
+                title="Rome video"
+                frameborder="0"
+                allowfullscreen></iframe>
+    </div>
+</div>
+
+<script src="/javascript/js_home/vendor.bundle.js"></script>
+<script src="/javascript/js_home/theme.bundle.js"></script>
 
 </body>
 </html>

@@ -36,7 +36,7 @@ async function initializeDatabase(db) {
   const categoriesCollection = db.collection('categories');
   const destinationsCollection = db.collection('destinations');
 
-  const categories = [4
+  const categories = [
     { categoryId: '1', name: 'Hiking' },
     { categoryId: '2', name: 'Islands' },
     { categoryId: '3', name: 'Cities' }
@@ -74,7 +74,8 @@ app.post('/register', async (req, res) => {
     password: req.body.password,
     fname: req.body.fname,
     lname: req.body.lname,
-    email: req.body.email
+    email: req.body.email,
+    wantToGo: []   // ✅ each user gets their own list
   };
 
   try {
@@ -85,6 +86,7 @@ app.post('/register', async (req, res) => {
     res.status(500).send("Error saving user");
   }
 });
+
 
 // Login
 app.post('/login', async (req, res) => {
@@ -133,27 +135,15 @@ app.post('/want-to-go', requireLogin, async (req, res) => {
   const { slug } = req.body;
   const usersCollection = db.collection('users');
 
-// ---------- SEARCH ----------
-
   try {
-    // Get current user's wantToGo list
-    const user = await usersCollection.findOne({ username: req.session.user.username });
+    const result = await usersCollection.updateOne(
+      { username: req.session.user.username },
+      { $addToSet: { wantToGo: slug } } // ✅ no duplicates
+    );
 
-    if (!user.wantToGo) user.wantToGo = [];
-
-    // Check if already exists
-    if (user.wantToGo.includes(slug)) {
+    if (result.modifiedCount === 0) {
       return res.status(400).send("Destination already in your Want-to-Go list");
     }
-
-    // Add new destination
-    user.wantToGo.push(slug);
-
-    // Update user document
-    await usersCollection.updateOne(
-      { username: req.session.user.username },
-      { $set: { wantToGo: user.wantToGo } }
-    );
 
     res.status(200).send("Added successfully");
   } catch (err) {
@@ -162,6 +152,7 @@ app.post('/want-to-go', requireLogin, async (req, res) => {
   }
 });
 
+
 // ---------- View user's Want-to-Go list ----------
 app.get('/wanttogo', requireLogin, async (req, res) => {
   const usersCollection = db.collection('users');
@@ -169,10 +160,12 @@ app.get('/wanttogo', requireLogin, async (req, res) => {
 
   try {
     const user = await usersCollection.findOne({ username: req.session.user.username });
-    const slugs = user.wantToGo || [];
 
-    // Fetch destinations
-    const destinations = await destinationsCollection.find({ slug: { $in: slugs } }).toArray();
+    const slugs = user?.wantToGo || [];
+
+    const destinations = await destinationsCollection
+      .find({ slug: { $in: slugs } })
+      .toArray();
 
     res.render('wanttogo', { destinations });
   } catch (err) {
@@ -180,6 +173,7 @@ app.get('/wanttogo', requireLogin, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
 
 // ---------- Initialize DB & Start Server ----------
 initializeDatabase(db)

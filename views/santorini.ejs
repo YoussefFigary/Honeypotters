@@ -20,12 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <noscript>
-        <style>
-            .simplebar-content-wrapper { overflow: auto; }
-        </style>
-    </noscript>
-
     <style>
         body {
             background-color: #111111;
@@ -35,40 +29,30 @@
         }
 
         nav.navbar {
-            transition: background-color 0.3s ease, color 0.3s ease;
             background-color: transparent !important;
-            padding-top: 0 !important;
+            transition: background-color 0.3s ease;
         }
 
-        /* Default State: White text/icons */
         nav.navbar .nav-link,
-        nav.navbar .navbar-brand,
-        nav.navbar i,
-        nav.navbar span {
+        nav.navbar .navbar-brand {
             color: #ffffff !important;
             transition: color 0.3s ease;
         }
 
-        /* HOVER STATE: White Background */
         nav.navbar:hover {
             background-color: #ffffff !important;
         }
 
-        /* HOVER STATE: Black Elements */
         nav.navbar:hover .nav-link,
-        nav.navbar:hover .navbar-brand,
-        nav.navbar:hover i,
-        nav.navbar:hover span { /* Added span here to target the "Santorini" text */
+        nav.navbar:hover .navbar-brand {
             color: #000000 !important;
         }
 
         .santorini-content {
-            position: relative;
             max-width: 1200px;
             margin: 150px auto 50px auto;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
             gap: 40px;
             align-items: flex-start;
         }
@@ -82,7 +66,7 @@
 
         .santorini-image img {
             width: 100%;
-            border-radius: 0px;
+            border-radius: 0;
         }
 
         .santorini-text {
@@ -106,10 +90,8 @@
             border: 2px solid #5d3eff;
             color: #5d3eff;
             background: transparent;
-            border-radius: 0;
             padding: 10px;
             font-weight: 600;
-            text-transform: capitalize;
             cursor: pointer;
         }
 
@@ -122,113 +104,57 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg border-0 position-absolute top-0 start-0 w-100 z-index-30">
-        <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
-            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+<nav class="navbar navbar-expand-lg border-0 position-absolute top-0 start-0 w-100 z-index-30">
+    <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
 
-                <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/home">
-                    <div class="d-flex align-items-center">
-                        <div class="f-w-6 d-flex align-items-center me-2 lh-1">
-                            <i class="ri-mountain-line ri-lg"></i> 
-                        </div>
-                        <span class="fs-5">Santorini </span>
-                    </div>
-                </a>
+        <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/home">
+            <span class="fs-5">Santorini</span>
+        </a>
 
-                <div class="ms-5 flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1" id="navbarNavDropdown">
-                    <button class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 position-absolute top-0 end-0 mt-3 me-2"
-                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ri-close-circle-line ri-2x"></i>
-                    </button>
-
-                    <ul class="navbar-nav py-lg-2 mx-auto">
-                        <li class="nav-item me-lg-4"><a class="nav-link fw-bolder py-lg-4" href="/home">Home</a></li>
-                        <li class="nav-item me-lg-4"><a class="nav-link fw-bolder py-lg-4" href="/want-to-go">Want To Go</a></li>
-                        <li class="nav-item dropdown me-lg-4">
-                            <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">Categories</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
-                                <li><a class="dropdown-item" href="/islands">Islands</a></li>
-                                <li><a class="dropdown-item" href="/cities">Cities</a></li>
-                            </ul>
-                        </li>
+        <div class="ms-5 flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1" id="navbarNavDropdown">
+            <ul class="navbar-nav py-lg-2 mx-auto">
+                <li class="nav-item me-lg-4"><a class="nav-link fw-bolder py-lg-4" href="/home">Home</a></li>
+                <li class="nav-item me-lg-4"><a class="nav-link fw-bolder py-lg-4" href="/wanttogo">Want To Go</a></li>
+                <li class="nav-item dropdown me-lg-4">
+                    <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="#" data-bs-toggle="dropdown">Categories</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
+                        <li><a class="dropdown-item" href="/islands">Islands</a></li>
+                        <li><a class="dropdown-item" href="/cities">Cities</a></li>
                     </ul>
-                </div>
-
-                <ul class="list-unstyled mb-0 d-flex align-items-center">
-                    <li class="d-inline-block d-lg-none">
-                        <button class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 d-flex align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="ri-menu-line ri-lg align-middle"></i>
-                        </button>
-                    </li>
-                    <li class="ms-1 d-inline-block">
-                        <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center" data-pr-search>
-                            <i class="ri-search-2-line ri-lg align-middle"></i>
-                        </button>
-                    </li>
-                    <li class="ms-1 d-none d-lg-inline-block"><a class="btn btn-link px-2 py-0 text-decoration-none d-flex align-items-center" href="#"><i class="ri-heart-line ri-lg align-middle"></i></a></li>
-                    <li class="ms-1 d-none d-lg-inline-block"><a class="btn btn-link px-2 text-decoration-none d-flex align-items-center" href="#"><i class="ri-user-line ri-lg align-middle"></i></a></li>
-                    <li class="ms-1 d-inline-block position-relative">
-                        <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center disable-child-pointer"
-                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                            <i class="ri-shopping-cart-2-line ri-lg align-middle position-relative z-index-10"></i>
-                            <span class="fs-xs fw-bolder f-w-5 f-h-5 bg-orange rounded-lg d-block lh-1 pt-1 position-absolute top-0 end-0 z-index-20 mt-2 text-white">2</span>
-                        </button>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-
-    <div class="santorini-content">
-        <div class="santorini-image">
-            <img src="/images/santorini.png" alt="Santorini Island">
-            <form method="POST" action="/want-to-go" class="wanttogo-btn">
-                <input type="hidden" name="destination" value="santorini">
-                <button type="submit" class="btn btn-sm w-100">Add to Want to Go</button>
-            </form>
+                </li>
+            </ul>
         </div>
 
-        <div class="santorini-text">
-            <p>
-                With its stunning turquoise waters and picturesque villages, great activities including wine-tasting, authentic Greek cuisine, regular boat excursions due to its ideal location for island hopping, small Greek island of Santorini became so popular as a holiday destination.
-            </p>
-        </div>
-
-        <div class="santorini-video">
-            <iframe height="315" src="https://www.youtube.com/embed/9Uxt27MHrEA?si=c4dqK6BBYsmPClLX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
     </div>
-    <script>
-async function addToWantToGo(slug, button) {
-    try {
-        const res = await fetch('/wanttogo/add', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ slug })
-        });
+</nav>
 
-        const text = await res.text();
-        if (res.ok) {
-            button.innerText = "Added!";
-            button.disabled = true;
-        } else {
-            alert(text);
-        }
-    } catch(err) {
-        console.error(err);
-        alert("Error adding destination");
-    }
-}
-</script>
+<div class="santorini-content">
+    <div class="santorini-image">
+        <img src="/images/santorini.png" alt="Santorini Island">
 
-    <script src="/javascript/js_home/vendor.bundle.js"></script>
-    <script src="/javascript/js_home/theme.bundle.js"></script>
+        <form method="POST" action="/want-to-go" class="wanttogo-btn mt-3">
+            <input type="hidden" name="slug" value="santorini">
+            <button type="submit" class="w-100">
+                Add to Want to Go
+            </button>
+        </form>
+    </div>
+
+    <div class="santorini-text">
+        <p>
+            With its stunning turquoise waters and picturesque villages, great activities including wine-tasting,
+            authentic Greek cuisine, and boat excursions, Santorini is one of the most iconic islands in the world.
+        </p>
+    </div>
+
+    <div class="santorini-video">
+        <iframe height="315" src="https://www.youtube.com/embed/9Uxt27MHrEA" title="Santorini video" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script src="/javascript/js_home/vendor.bundle.js"></script>
+<script src="/javascript/js_home/theme.bundle.js"></script>
 
 </body>
 </html>
