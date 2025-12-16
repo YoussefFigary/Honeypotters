@@ -36,7 +36,7 @@ async function initializeDatabase(db) {
   const categoriesCollection = db.collection('categories');
   const destinationsCollection = db.collection('destinations');
 
-  const categories = [
+  const categories = [4
     { categoryId: '1', name: 'Hiking' },
     { categoryId: '2', name: 'Islands' },
     { categoryId: '3', name: 'Cities' }
@@ -63,9 +63,7 @@ async function initializeDatabase(db) {
 }
 
 // ---------- Routes ----------
-
-// Public pages
-app.get('/', (req, res) => res.render('index'));
+app.get('/', (req, res) => res.render('home', { title: "express" }));
 app.get('/register', (req, res) => res.render('registration'));
 app.get('/login', (req, res) => res.render('login'));
 
@@ -119,10 +117,23 @@ app.get('/home', requireLogin, (req, res) => res.render('home'));
   app.get(`/${page}`, requireLogin, (req, res) => res.render(page));
 });
 
+
+app.get('/categories', async (req, res) => {
+  try {
+    const categories = await db.collection('categories').find().toArray();
+    res.render('categories', { categories });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
 // ---------- Add to Want-to-Go ----------
 app.post('/want-to-go', requireLogin, async (req, res) => {
   const { slug } = req.body;
   const usersCollection = db.collection('users');
+
+// ---------- SEARCH ----------
 
   try {
     // Get current user's wantToGo list
