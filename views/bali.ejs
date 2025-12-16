@@ -223,6 +223,28 @@
     <div class="video">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BFS9n4B_2xA?si=R8XNUoDTo1N_h1HK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
+<script>
+async function addToWantToGo(slug, button) {
+    try {
+        const res = await fetch('/wanttogo/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug })
+        });
+
+        const text = await res.text();
+        if (res.ok) {
+            button.innerText = "Added!";
+            button.disabled = true;
+        } else {
+            alert(text);
+        }
+    } catch(err) {
+        console.error(err);
+        alert("Error adding destination");
+    }
+}
+</script>
 
 </body>
 

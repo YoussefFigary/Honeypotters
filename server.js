@@ -1,8 +1,10 @@
 const db = require('./db');
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 
 const app = express();
+const port = 3000;
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -13,7 +15,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ---------- Database Initialization ----------
+// Session Setup
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 }
+}));
+
+// Auth Middleware
+function requireLogin(req, res, next) {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+  next();
+}
+
+// Initialize Database
 async function initializeDatabase(db) {
   const categoriesCollection = db.collection('categories');
   const destinationsCollection = db.collection('destinations');
@@ -45,70 +63,111 @@ async function initializeDatabase(db) {
 }
 
 // ---------- Routes ----------
-app.get('/', (req, res) => res.render('index', { title: "express" }));
+
+// Public pages
+app.get('/', (req, res) => res.render('index'));
 app.get('/register', (req, res) => res.render('registration'));
-app.post('/register', (req, res) => {
-  const user = { username: req.body.username, password: req.body.password, fname: req.body.fname, lname: req.body.lname, email: req.body.email };
-  db.collection('users').insertOne(user)
-    .then(() => res.redirect('/login'))
-    .catch(err => res.status(500).send("Error saving user"));
-});
-
 app.get('/login', (req, res) => res.render('login'));
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  db.collection('users').findOne({ username })
-    .then(user => {
-      if (!user) return res.status(401).send("User not found");
-      if (user.password !== password) return res.status(401).send("Incorrect password");
-      res.redirect('/home');
-    })
-    .catch(err => res.status(500).send("Server error"));
-});
 
-app.get('/home', (req, res) => res.render('home'));
-app.post('/home', (req, res) => {
-  const page = req.body.page;
-  switch(page) {
-    case 'hiking': return res.redirect('/hiking');
-    case 'cities': return res.redirect('/cities');
-    case 'islands': return res.redirect('/islands');
-    case 'wanttogo': return res.redirect('/wanttogo');
-    default: return res.redirect('/home');
+// Register
+app.post('/register', async (req, res) => {
+  const user = {
+    username: req.body.username,
+    password: req.body.password,
+    fname: req.body.fname,
+    lname: req.body.lname,
+    email: req.body.email
+  };
+
+  try {
+    await db.collection('users').insertOne(user);
+    res.redirect('/login');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error saving user");
   }
 });
+
+// Login
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await db.collection('users').findOne({ username });
+    if (!user) return res.status(401).send("User not found");
+    if (user.password !== password) return res.status(401).send("Incorrect password");
+
+    req.session.user = { username: user.username, _id: user._id };
+    res.redirect('/home');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// Logout
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
+});
+
+// Home
+app.get('/home', requireLogin, (req, res) => res.render('home'));
 
 // Destination pages
-['annapurna', 'bali', 'cities', 'hiking', 'islands', 'paris', 'rome', 'santorini', 'wanttogo', 'inca'].forEach(page => {
-  app.get(`/${page}`, (req, res) => res.render(page));
+['annapurna', 'bali', 'cities', 'hiking', 'islands', 'paris', 'rome', 'santorini', 'inca'].forEach(page => {
+  app.get(`/${page}`, requireLogin, (req, res) => res.render(page));
 });
 
-// ---------- SEARCH ----------
+// ---------- Add to Want-to-Go ----------
+app.post('/want-to-go', requireLogin, async (req, res) => {
+  const { slug } = req.body;
+  const usersCollection = db.collection('users');
 
-// POST search from form
-app.post('/search', (req, res) => {
-  const keyword = req.body.search?.trim();
-  if (!keyword) return res.redirect('/searchresults');
-  // redirect to GET route with query
-  res.redirect(`/searchresults?q=${encodeURIComponent(keyword)}`);
-});
+  try {
+    // Get current user's wantToGo list
+    const user = await usersCollection.findOne({ username: req.session.user.username });
 
-// GET search results page
-app.get('/searchresults', async (req, res) => {
-  const query = req.query.q?.trim();
-  if (!query) {
-    return res.render('searchresults', { query: '', results: [], message: null });
+    if (!user.wantToGo) user.wantToGo = [];
+
+    // Check if already exists
+    if (user.wantToGo.includes(slug)) {
+      return res.status(400).send("Destination already in your Want-to-Go list");
+    }
+
+    // Add new destination
+    user.wantToGo.push(slug);
+
+    // Update user document
+    await usersCollection.updateOne(
+      { username: req.session.user.username },
+      { $set: { wantToGo: user.wantToGo } }
+    );
+
+    res.status(200).send("Added successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
   }
+});
 
-  const results = await db.collection('destinations').find({
-    name: { $regex: query, $options: 'i' }
-  }).toArray();
+// ---------- View user's Want-to-Go list ----------
+app.get('/wanttogo', requireLogin, async (req, res) => {
+  const usersCollection = db.collection('users');
+  const destinationsCollection = db.collection('destinations');
 
-  res.render('searchresults', {
-    query,
-    results,
-    message: results.length === 0 ? 'Destination not found' : null
-  });
+  try {
+    const user = await usersCollection.findOne({ username: req.session.user.username });
+    const slugs = user.wantToGo || [];
+
+    // Fetch destinations
+    const destinations = await destinationsCollection.find({ slug: { $in: slugs } }).toArray();
+
+    res.render('wanttogo', { destinations });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
 });
 
 // ---------- Initialize DB & Start Server ----------
@@ -116,4 +175,4 @@ initializeDatabase(db)
   .then(() => console.log('Database initialized'))
   .catch(err => console.error('Database init failed', err));
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(3000);
