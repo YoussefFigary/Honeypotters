@@ -174,6 +174,36 @@ app.get('/wanttogo', requireLogin, async (req, res) => {
   }
 });
 
+// POST search from form
+app.post('/search', (req, res) => {
+  const keyword = req.body.search?.trim();
+  if (!keyword) return res.redirect('/searchresults');
+  // redirect to GET route with query
+  res.redirect(`/searchresults?q=${encodeURIComponent(keyword)}`);
+});
+
+// GET search results
+app.get('/searchresults', async (req, res) => {
+  try {
+    const query = req.query.q?.trim() || '';
+    let results = [];
+
+    if (query) {
+      results = await db.collection('destinations').find({
+        name: { $regex: query, $options: 'i' }
+      }).toArray();
+    }
+
+    res.render('searchresults', {
+      query,
+      results,
+      message: results.length === 0 ? 'Destination not found' : null
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
 
 // ---------- Initialize DB & Start Server ----------
 initializeDatabase(db)
