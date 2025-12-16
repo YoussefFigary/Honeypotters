@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Head -->
 <head>
     <!-- Page Meta Tags-->
     <meta charset="utf-8">
@@ -15,10 +14,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <!--<link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#5bbad5">--> 
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    
+
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="/Stylesheets/css_home/libs.bundle.css" />
 
@@ -33,265 +31,184 @@
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
         <style>
-          /**
-          * Reinstate scrolling for non-JS clients
-          */
-          .simplebar-content-wrapper {
-            overflow: auto;
-          }
+            .simplebar-content-wrapper {
+                overflow: auto;
+            }
         </style>
     </noscript>
 
-    <!-- Page Title -->
-    <title>Alpine | Bootstrap 5 Ecommerce HTML Template</title>
-    
+    <title>Home | HoneyPotters</title>
 </head>
-<body class="">
+
+<body>
 
     <!-- Navbar -->
-    <div class="position-relative z-index-30">
-        <!-- Navbar -->
-        <nav
-            class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column  border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
-            <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
-                <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
-        
-                    <!-- Logo-->
-                    <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/views/home.ejs">
-                        <!-- Start of Logo-->
-                        <div class="d-flex align-items-center">
-                            <div class="f-w-6 d-flex align-items-center me-2 lh-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194 194"><path fill="currentColor" class="svg-logo-white" d="M47.45,60l1.36,27.58,53.41-51.66,50.87,50,3.84-26L194,100.65V31.94A31.94,31.94,0,0,0,162.06,0H31.94A31.94,31.94,0,0,0,0,31.94v82.57Z"/><path fill="currentColor" class="svg-logo-dark" d="M178.8,113.19l1,34.41L116.3,85.92l-14.12,15.9L88.07,85.92,24.58,147.53l.93-34.41L0,134.86v27.2A31.94,31.94,0,0,0,31.94,194H162.06A31.94,31.94,0,0,0,194,162.06V125.83Z"/></svg>
-                            </div> <span class="fs-5">HoneyPotters</span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
+        <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
+            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+
+                <!-- Logo-->
+                <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/home">
+                    <div class="d-flex align-items-center">
+                        <div class="f-w-6 d-flex align-items-center me-2 lh-1">
+                            <!-- SVG Logo here -->
                         </div>
-                        <!-- / Logo-->
-                        
-                    </a>
-                    <!-- / Logo-->
-        
-                    <!-- Main Navigation-->
-                    <div class="ms-5 flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1" id="navbarNavDropdown">
-        
-                        <!-- Mobile Nav Toggler-->
-                        <button
-                            class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 position-absolute top-0 end-0 mt-3 me-2"
-                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="ri-close-circle-line ri-2x"></i>
-                        </button>
-                        <!-- / Mobile Nav Toggler-->
-        
-                        <ul class="navbar-nav py-lg-2 mx-auto">
-                            <li class="nav-item me-lg-4 dropdown position-static">
-                                <a class="nav-link fw-bolder  py-lg-4" href="/home" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Home
-                                </a>
-                               
-                            </li>
-                            
-                        
-                            <li class="nav-item me-lg-4">
-                                <a class="nav-link fw-bolder py-lg-4" href="/wanttogo">
-                                    Want To Go
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown me-lg-4">
-                                  <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="/category" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Categories
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
-                                    <li><a class="dropdown-item" href="/islands">Islands</a></li>
-                                    <li><a class="dropdown-item" href="/cities">Cities</a></li>
-                                </ul>
-                            </li>
-                        </ul>            </div>
-                    <!-- / Main Navigation-->
-        
-                    <!-- Navbar Icons-->
-                    <ul class="list-unstyled mb-0 d-flex align-items-center">
-        
-                        <!-- Navbar Toggle Icon-->
-                        <li class="d-inline-block d-lg-none">
-                            <button
-                                class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 d-flex align-items-center"
-                                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <i class="ri-menu-line ri-lg align-middle"></i>
-                            </button>
+                        <span class="fs-5">HoneyPotters</span>
+                    </div>
+                </a>
+
+                <!-- Main Navigation-->
+                <div class="ms-5 flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1" id="navbarNavDropdown">
+                    <button class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 position-absolute top-0 end-0 mt-3 me-2"
+                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ri-close-circle-line ri-2x"></i>
+                    </button>
+
+                    <ul class="navbar-nav py-lg-2 mx-auto">
+                        <li class="nav-item me-lg-4">
+                            <a class="nav-link fw-bolder py-lg-4" href="/home">Home</a>
                         </li>
-                        <!-- /Navbar Toggle Icon-->
-        
-                        <!-- Navbar Search-->
-                       <li class="ms-1 d-inline-block">
-                            <a
-                                href="/searchresults"
-                                class="btn btn-link px-2 text-decoration-none d-flex align-items-center">
-                                <i class="ri-search-2-line ri-lg align-middle"></i>
+                        <li class="nav-item me-lg-4">
+                            <a class="nav-link fw-bolder py-lg-4" href="/wanttogo">Want To Go</a>
+                        </li>
+                        <li class="nav-item dropdown me-lg-4">
+                            <!-- Top button just toggles dropdown, no href -->
+                            <a class="nav-link fw-bolder dropdown-toggle py-lg-4" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Categories
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/hiking">Hiking</a></li>
+                                <li><a class="dropdown-item" href="/islands">Islands</a></li>
+                                <li><a class="dropdown-item" href="/cities">Cities</a></li>
+                            </ul>
                         </li>
-                        <!-- /Navbar Search-->
-        
-        
                     </ul>
-                    <!-- Navbar Icons-->
-        
                 </div>
+
+                <!-- Navbar Icons-->
+                <ul class="list-unstyled mb-0 d-flex align-items-center">
+                    <li class="d-inline-block d-lg-none">
+                        <button class="btn btn-link px-2 text-decoration-none navbar-toggler border-0 d-flex align-items-center"
+                                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="ri-menu-line ri-lg align-middle"></i>
+                        </button>
+                    </li>
+
+                    <li class="ms-1 d-inline-block">
+                        <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center" data-pr-search>
+                            <i class="ri-search-2-line ri-lg align-middle"></i>
+                        </button>
+                    </li>
+
+                    <li class="ms-1 d-none d-lg-inline-block">
+                        <a class="btn btn-link px-2 py-0 text-decoration-none d-flex align-items-center" href="#">
+                            <i class="ri-heart-line ri-lg align-middle"></i>
+                        </a>
+                    </li>
+
+                    <li class="ms-1 d-none d-lg-inline-block">
+                        <a class="btn btn-link px-2 text-decoration-none d-flex align-items-center" href="#">
+                            <i class="ri-user-line ri-lg align-middle"></i>
+                        </a>
+                    </li>
+
+                    <li class="ms-1 d-inline-block position-relative">
+                        <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center disable-child-pointer"
+                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <i class="ri-shopping-cart-2-line ri-lg align-middle position-relative z-index-10"></i>
+                            <span class="fs-xs fw-bolder f-w-5 f-h-5 bg-orange rounded-lg d-block lh-1 pt-1 position-absolute top-0 end-0 z-index-20 mt-2 text-white">2</span>
+                        </button>
+                    </li>
+                </ul>
+
             </div>
-        </nav>
-        <!-- / Navbar-->    </div>
-    <!-- / Navbar-->
+        </div>
+    </nav>
+    <!-- /Navbar -->
 
-    <!-- Main Section-->
-    <section class="mt-0 ">
-        <!-- Page Content Goes Here -->
-
-        <!-- / Hero Section -->
-        <section class="vh-100 position-relative bg-overlay-dark ">
-            <div class="container d-flex h-100 justify-content-center align-items-center position-relative z-index-10">
-                <div
-                    class="d-flex justify-content-center align-items-center h-100 position-relative z-index-10 text-white">
-                    <div>
-                        <h1 class="display-1 fw-bold px-2 px-md-5 text-center mx-auto col-lg-8 mt-md-0"
-                            data-aos="fade-up" data-aos-delay="1000">Where will your next adventure take you?</h1>
-                        <div data-aos="fade-in" data-aos-delay="2000">
-                             
-                            <i class="ri-mouse-line d-block text-center animation-float ri-2x transition-all opacity-50-hover text-white"
-                                data-pixr-scrollto data-target=".brand-section" data-aos="fade-up"
-                                data-aos-delay="700"></i>
-                        </div>
+    <!-- Hero Section -->
+    <section class="vh-100 position-relative bg-overlay-dark">
+        <div class="container d-flex h-100 justify-content-center align-items-center position-relative z-index-10">
+            <div class="d-flex justify-content-center align-items-center h-100 position-relative z-index-10 text-white">
+                <div>
+                    <h1 class="display-1 fw-bold px-2 px-md-5 text-center mx-auto col-lg-8 mt-md-0"
+                        data-aos="fade-up" data-aos-delay="1000">Where will your next adventure take you?</h1>
+                    <div data-aos="fade-in" data-aos-delay="2000">
+                        <i class="ri-mouse-line d-block text-center animation-float ri-2x transition-all opacity-50-hover text-white"
+                           data-pixr-scrollto data-target=".brand-section" data-aos="fade-up" data-aos-delay="700"></i>
                     </div>
                 </div>
             </div>
-            <div class="position-absolute z-index-1 top-0 bottom-0 start-0 end-0">
-                <!-- Swiper Info -->
-                <div class="swiper-container overflow-hidden bg-light w-100 h-100"
-                  data-swiper
-                  data-options='{
-                    "slidesPerView": 1,
-                    "speed": 1500,
-                    "loop": true,
-                    "effect": "fade",
-                    "autoplay": {
-                      "delay": 5000
-                    }
-                  }'>
-                  <div class="swiper-wrapper">
+        </div>
+        <div class="position-absolute z-index-1 top-0 bottom-0 start-0 end-0">
+            <div class="swiper-container overflow-hidden bg-light w-100 h-100"
+                 data-swiper
+                 data-options='{
+                     "slidesPerView": 1,
+                     "speed": 1500,
+                     "loop": true,
+                     "effect": "fade",
+                     "autoplay": {"delay": 5000}
+                 }'>
+                <div class="swiper-wrapper">
                     <div class="swiper-slide position-relative">
-                      <div class="w-100 h-100 bg-img-cover animation-move bg-pos-center-center" style="background-image: url(/images/slideshows/slideshow-1.jpg);">
-                      </div> 
+                        <div class="w-100 h-100 bg-img-cover animation-move bg-pos-center-center" style="background-image: url(/images/slideshows/slideshow-1.jpg);"></div>
                     </div>
                     <div class="swiper-slide position-relative">
-                      <div class="w-100 h-100 bg-img-cover animation-move bg-pos-center-center" style="background-image: url(/images/slideshows/slideshow-2.jpg);"> 
-                      </div>
+                        <div class="w-100 h-100 bg-img-cover animation-move bg-pos-center-center" style="background-image: url(/images/slideshows/slideshow-2.jpg);"></div>
                     </div>
                     <div class="swiper-slide position-relative">
-                      <div class="w-100 h-100 bg-img-cover animation-move bg-pos-center-center" style="background-image: url(/images/slideshows/slideshow-3.jpg);"> 
-                      </div>
-                    </div>
-                  </div> 
-                
-                </div>
-                <!-- / Swiper Info-->            </div>
-        </section>
-        <!--/ Hero Section-->
-
-        <!-- Featured Brands-->
-        
-        <!--/ Featured Brands-->
-
-        <!-- Staff Picks-->
-       
-        <!-- / Staff Picks-->
-
-        <!-- Image Hotspot Banner-->
-        <section class="my-10 position-relative">
-            <!-- SVG Shape Divider-->
-            <div class="position-absolute z-index-50 text-white top-0 start-0 end-0">
-                <svg class="align-self-start d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="1283 0 0 0 0 53.25 1283 0"/></svg></div>
-            <!-- /SVG Shape Divider-->
-            
-            <div class="w-100 h-100 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url('/images/safari_cover.avif');">
-                
-                <div class="container py-lg-8 position-relative z-index-10 d-flex align-items-center" data-aos="fade-left">
-                    <div class="py-8 d-flex justify-content-end align-items-start align-items-lg-end flex-column col-lg-4 text-lg-end">
-                        <h2 class="display-5 fw-bold mb-3">Hiking</h2>
-                        <p class="lead d-none d-lg-block">Explore the world most breathtaking hiking trails, from peaceful forest paths to challenging mountain routes. Discover nature, adventure, and unforgettable views while escaping the noise of everyday life.</p>
-                        <a class="text-decoration-none fw-bolder" href="/hiking">Explore Distnations &rarr;</a>
+                        <div class="w-100 h-100 bg-img-cover animation-move bg-pos-center-center" style="background-image: url(/images/slideshows/slideshow-3.jpg);"></div>
                     </div>
                 </div>
-            
-            
-            <!-- SVG Shape Divider-->
-            <div class="position-absolute z-index-50 text-white bottom-0 start-0 end-0">
-                <svg class="align-self-end d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="0 53.25 1283 53.25 1283 0 0 53.25"/></svg>
             </div>
-            
-        </section>
+        </div>
+    </section>
+    <!-- /Hero Section -->
 
-        <section class="my-10 position-relative">
-            <!-- SVG Shape Divider-->
-            <div class="position-absolute z-index-50 text-white top-0 start-0 end-0">
-                <svg class="align-self-start d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="1283 0 0 0 0 53.25 1283 0"/></svg></div>
-            <!-- /SVG Shape Divider-->
-            
-            <div class="w-100 h-100 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url(/images/background1.jpg);">
-              
-                <div class="container py-lg-8 position-relative z-index-10 d-flex align-items-center" data-aos="fade-left">
-                    <div class="py-8 d-flex justify-content-end align-items-start align-items-lg-end flex-column col-lg-4 text-lg-end">
-                        <h2 class="display-5 fw-bold mb-3">Islands</h2>
-                        <p class="lead d-none d-lg-block">Explore the most beautiful islands across the globe, where crystal-clear waters, sandy beaches, and vibrant cultures await. Perfect destinations for relaxation, adventure, and discovering paradise far from the ordinary.</p>
-                        <a class="text-decoration-none fw-bolder" href="/islands">Explore Distnations &rarr;</a>
-                    </div>
+    <!-- Image Hotspot Banners -->
+    <section class="my-10 position-relative">
+        <div class="w-100 h-100 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url('/images/safari_cover.avif');">
+            <div class="container py-lg-8 position-relative z-index-10 d-flex align-items-center" data-aos="fade-left">
+                <div class="py-8 d-flex justify-content-end align-items-start align-items-lg-end flex-column col-lg-4 text-lg-end">
+                    <h2 class="display-5 fw-bold mb-3">Hiking</h2>
+                    <p class="lead d-none d-lg-block">Explore the world's most breathtaking hiking trails.</p>
+                    <a class="text-decoration-none fw-bolder" href="/hiking">Explore Destinations &rarr;</a>
                 </div>
-            
-            
-            <!-- SVG Shape Divider-->
-            <div class="position-absolute z-index-50 text-white bottom-0 start-0 end-0">
-                <svg class="align-self-end d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="0 53.25 1283 53.25 1283 0 0 53.25"/></svg>
             </div>
-            
-        </section>
+        </div>
+    </section>
 
-        <section class="my-10 position-relative">
-            <!-- SVG Shape Divider-->
-            <div class="position-absolute z-index-50 text-white top-0 start-0 end-0">
-                <svg class="align-self-start d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="1283 0 0 0 0 53.25 1283 0"/></svg></div>
-            <!-- /SVG Shape Divider-->
-            
-            <div class="w-100 h-100 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url(/images/Cairo.jpg);">
-           
-                <div class="container py-lg-8 position-relative z-index-10 d-flex align-items-center" data-aos="fade-left">
-                    <div class="py-8 d-flex justify-content-end align-items-start align-items-lg-end flex-column col-lg-4 text-lg-end">
-                        
-                        <h2 class="display-5 fw-bold mb-3">Cities</h2>
-                        <p class="lead d-none d-lg-block">Explore iconic cities full of history, culture, and modern life. Walk through lively streets, discover famous landmarks, enjoy local cuisine, and experience the unique rhythm that makes every city unforgettable.</p>
-                        <a class="text-decoration-none fw-bolder" href="/cities">Explore Distnations &rarr;</a>
-                    </div>
+    <section class="my-10 position-relative">
+        <div class="w-100 h-100 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url('/images/background1.jpg');">
+            <div class="container py-lg-8 position-relative z-index-10 d-flex align-items-center" data-aos="fade-left">
+                <div class="py-8 d-flex justify-content-end align-items-start align-items-lg-end flex-column col-lg-4 text-lg-end">
+                    <h2 class="display-5 fw-bold mb-3">Islands</h2>
+                    <p class="lead d-none d-lg-block">Explore the most beautiful islands across the globe.</p>
+                    <a class="text-decoration-none fw-bolder" href="/islands">Explore Destinations &rarr;</a>
                 </div>
-            
-            
-            <!-- SVG Shape Divider-->
-            <div class="position-absolute z-index-50 text-white bottom-0 start-0 end-0">
-                <svg class="align-self-end d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="0 53.25 1283 53.25 1283 0 0 53.25"/></svg>
             </div>
-            
-        </section>
-                <!-- /SVG Shape Divider-->     
-        <!-- / Image Hotspot Banner-->
+        </div>
+    </section>
 
+    <section class="my-10 position-relative">
+        <div class="w-100 h-100 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url('/images/Cairo.jpg');">
+            <div class="container py-lg-8 position-relative z-index-10 d-flex align-items-center" data-aos="fade-left">
+                <div class="py-8 d-flex justify-content-end align-items-start align-items-lg-end flex-column col-lg-4 text-lg-end">
+                    <h2 class="display-5 fw-bold mb-3">Cities</h2>
+                    <p class="lead d-none d-lg-block">Explore iconic cities full of history, culture, and modern life.</p>
+                    <a class="text-decoration-none fw-bolder" href="/cities">Explore Destinations &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-        <!-- Linked Product Carousels-->
-    
     <!-- Theme JS -->
-    <!-- Vendor JS -->
     <script src="/javascript/js_home/vendor.bundle.js"></script>
-    
-    <!-- Theme JS -->
     <script src="/javascript/js_home/theme.bundle.js"></script>
-</body>
 
+</body>
 </html>

@@ -3,40 +3,77 @@
 <head>
     <style>
         body {
-            background-image: url("background3.jpg");
+            background-image: url("/images/background3.jpg");
             background-repeat: no-repeat;
-            background-size: 100%;
-        }
-
-        h1 {
+            background-size: cover;
             color: white;
+        }
+        h1 {
             text-align: center;
             -webkit-text-stroke: 1px blue;
+            margin-top: 20px;
+        }
+        .destination-card {
+            background: rgba(0,0,0,0.6);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px;
+            width: 250px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+        .destination-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .btn-home {
+            margin: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Want-to-Go List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-        <a class="navbar-brand" style="color: rgb(191, 255, 161)">Want-to-Go List</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="/home">Want-to-Go List</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
+            <ul class="navbar-nav mr-auto"></ul>
             <form method="POST" action='/search' class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search"
-                    aria-label="Search">
+                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </nav>
+
+    <h1>Your Want-to-Go List</h1>
+
+    <div class="d-flex flex-wrap justify-content-center">
+        <% if (destinations.length === 0) { %>
+            <p style="color:white; font-size:20px; text-align:center;">You haven't added any destinations yet.</p>
+        <% } else { %>
+            <% destinations.forEach(destination => { %>
+                <div class="destination-card">
+                    <img src="/images/<%= destination.slug %>.png" alt="<%= destination.name %>">
+                    <h4><%= destination.name %></h4>
+                    <p><%= destination.description %></p>
+                    <a href="/<%= destination.slug %>" class="btn btn-primary btn-sm">View</a>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+
+    <div class="text-center">
+        <a href="/home" class="btn btn-secondary btn-home">Back to Home</a>
+    </div>
+
 </body>
 </html>
