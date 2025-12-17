@@ -47,8 +47,8 @@ async function initializeDatabase(db) {
     { name: 'Santorini', slug: 'santorini', categoryId: '2', description: 'A stunning Greek island famous for white-washed buildings.', videoUrl: 'https://www.youtube.com/watch?v=santorini123' },
     { name: 'Rome', slug: 'rome', categoryId: '3', description: 'The historic capital of Italy.', videoUrl: 'https://www.youtube.com/watch?v=rome123' },
     { name: 'Paris', slug: 'paris', categoryId: '3', description: 'The City of Light.', videoUrl: 'https://www.youtube.com/watch?v=paris123' },
-    { name: 'Inca Trail', slug: 'inca', categoryId: '1', description: 'A legendary hiking path in Peru.', videoUrl: 'https://www.youtube.com/watch?v=inca123' },
-    { name: 'Annapurna Circuit', slug: 'annapurna', categoryId: '1', description: 'One of the world’s most famous trekking routes.', videoUrl: 'https://www.youtube.com/watch?v=annapurna123' }
+    { name: 'Inca Trail', slug: 'Inca_Trail', categoryId: '1', description: 'A legendary hiking path in Peru.', videoUrl: 'https://www.youtube.com/watch?v=inca123' },
+    { name: 'Annapurna Circuit', slug: 'Annapurna_Circuit', categoryId: '1', description: 'One of the world’s most famous trekking routes.', videoUrl: 'https://www.youtube.com/watch?v=annapurna123' }
   ];
 
   if ((await categoriesCollection.countDocuments()) === 0) {
@@ -115,15 +115,20 @@ app.get('/logout', (req, res) => {
 app.get('/home', requireLogin, (req, res) => res.render('home'));
 
 // Destination pages
-['annapurna', 'bali', 'cities', 'hiking', 'islands', 'paris', 'rome', 'santorini', 'inca'].forEach(page => {
+['bali', 'cities', 'hiking', 'islands', 'paris', 'rome', 'santorini'].forEach(page => {
   app.get(`/${page}`, requireLogin, (req, res) => res.render(page));
 });
+app.get('/', requireLogin, (req, res) => res.render('home'));
+
+app.get('/Inca_Trail', requireLogin, (req, res) => res.render('inca'));
+app.get('/Annapurna_Circuit', requireLogin, (req, res) => res.render('annapurna'));
+
 
 
 app.get('/categories', async (req, res) => {
   try {
     const categories = await db.collection('categories').find().toArray();
-    res.render('categories', { categories });
+    res.render('category', { categories });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
