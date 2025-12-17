@@ -51,11 +51,18 @@
 
 <body>
  <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
     <div class="container-fluid">
 
-        <a class="navbar-brand fw-bold fs-3" href="/home">HoneyPotters</a>
-
+<a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0" href="/home">
+                    <div class="d-flex align-items-center">
+                        <div class="f-w-6 d-flex align-items-center me-2 lh-1">
+                            <!-- SVG Logo here -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194 194"><path fill="currentColor" class="svg-logo-white" d="M47.45,60l1.36,27.58,53.41-51.66,50.87,50,3.84-26L194,100.65V31.94A31.94,31.94,0,0,0,162.06,0H31.94A31.94,31.94,0,0,0,0,31.94v82.57Z"/><path fill="currentColor" class="svg-logo-dark" d="M178.8,113.19l1,34.41L116.3,85.92l-14.12,15.9L88.07,85.92,24.58,147.53l.93-34.41L0,134.86v27.2A31.94,31.94,0,0,0,31.94,194H162.06A31.94,31.94,0,0,0,194,162.06V125.83Z"/></svg>
+                        </div>
+                        <span class="fs-5">HoneyPotters</span>
+                    </div>
+                </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -83,8 +90,10 @@
                 </li>
             </ul>
 
-            <a href="/searchresults" class="btn btn-link text-white">🔍</a>
-        </div>
+<a href="/searchresults" class="btn btn-link px-2 text-decoration-none d-flex align-items-center">
+                 
+                            <i class="ri-search-2-line ri-lg align-middle"></i>
+            </a>        </div>
     </div>
  </nav>
 
