@@ -79,7 +79,7 @@ app.post('/register', async (req, res) => {
   };
 
   try {
-    await db.collection('users').insertOne(user);
+    await db.collection('myCollection').insertOne(user);
     res.redirect('/login');
   } catch (err) {
     console.error(err);
@@ -93,7 +93,7 @@ app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const user = await db.collection('users').findOne({ username });
+    const user = await db.collection('myCollection').findOne({ username });
     if (!user) return res.status(401).send("User not found");
     if (user.password !== password) return res.status(401).send("Incorrect password");
 
@@ -138,7 +138,7 @@ app.get('/categories', async (req, res) => {
 // ---------- Add to Want-to-Go ----------
 app.post('/want-to-go', requireLogin, async (req, res) => {
   const { slug } = req.body;
-  const usersCollection = db.collection('users');
+  const usersCollection = db.collection('myCollection');
 
   try {
     const result = await usersCollection.updateOne(
@@ -160,7 +160,7 @@ app.post('/want-to-go', requireLogin, async (req, res) => {
 
 // ---------- View user's Want-to-Go list ----------
 app.get('/wanttogo', requireLogin, async (req, res) => {
-  const usersCollection = db.collection('users');
+  const usersCollection = db.collection('myCollection');
   const destinationsCollection = db.collection('destinations');
 
   try {
